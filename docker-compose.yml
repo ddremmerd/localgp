@@ -31,14 +31,14 @@ services:
       - PGDATABASE=postgres
       - PGPASSWORD=postgres_password
       - PGPORT=5432
-  client:
+  appclient:
     stdin_open: true
     build:
       dockerfile: Dockerfile.dev
-      context: ./client
+      context: ./appclient
     volumes:
       - /app/node_modules
-      - ./client:/app
+      - ./appclient:/app
   worker:
     build:
       dockerfile: Dockerfile.dev

@@ -1,16 +1,16 @@
-docker build -t testecx14/multi-client:latest -t testecx14/multi-client:$SHA -f ./client/Dockerfile ./client
-docker build -t testecx14/multi-server:latest -t testecx14/multi-server:$SHA -f ./server/Dockerfile ./server
-docker build -t testecx14/multi-worker:latest -t testecx14/multi-worker:$SHA -f ./worker/Dockerfile ./worker 
-docker push testecx14/multi-client:latest
-docker push testecx14/multi-server:latest
-docker push testecx14/multi-worker:latest
+docker build -t testecx14/localontv-app:latest -t testecx14/localontv-app:$SHA -f ./appclient/Dockerfile ./client
+docker build -t testecx14/localontv-server:latest -t testecx14/localontv-server:$SHA -f ./appserver/Dockerfile ./server
+docker build -t testecx14/localontv-worker:latest -t testecx14/localontv-worker:$SHA -f ./appworker/Dockerfile ./worker 
+docker push testecx14/localontv-app:latest
+docker push testecx14/localontv-server:latest
+docker push testecx14/localontv-worker:latest
 
-docker push testecx14/multi-client:$SHA
-docker push testecx14/multi-server:$SHA
-docker push testecx14/multi-worker:$SHA
+docker push testecx14/localontv-app:$SHA
+docker push testecx14/localontv-server:$SHA
+docker push testecx14/localontv-worker:$SHA
 
 kubectl apply -f k8s
-kubectl set image deployments/server-deployment server=testecx14/multi-server:$SHA
-kubectl set image deployments/client-deployment client=testecx14/multi-client:$SHA
-kubectl set image deployments/worker-deployment worker=testecx14/multi-worker:$SHA
+kubectl set image deployments/localontv-server-deployment server=testecx14/localontv-server:$SHA
+kubectl set image deployments/localontv-app-deployment client=testecx14/localontv-app:$SHA
+kubectl set image deployments/localontv-worker-deployment worker=testecx14/localontv-worker:$SHA
 

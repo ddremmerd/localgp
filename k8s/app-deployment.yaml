@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: client-deployment
+  name: localontv-app-deployment
 spec:
   replicas: 3
   selector:
@@ -13,7 +13,7 @@ spec:
         component: web
     spec:
       containers:
-        - name: client
-          image: testecx14/multi-client
+        - name: appclient
+          image: testecx14/localontv-app
           ports:
             - containerPort: 3000
